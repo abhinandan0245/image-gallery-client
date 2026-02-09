@@ -14,6 +14,28 @@ export const imageApi = api.injectEndpoints({
   providesTags: ["Image"]
 }),
 
+getImageById: builder.query({
+  query: (id) => `/images/${id}`,
+  providesTags: (result, error, id) => [{ type: "Image", id }]
+}),
+
+  getImagesByUser: builder.query({
+      query: ({ userId, excludeId }) => ({
+        url: "/images/user-images",
+        params: { userId, excludeId }
+      }),
+      providesTags: ["Image"]
+    }),
+
+     getImagesBySameAdmin: builder.query({
+      query: (imageId) => `/images/${imageId}/same-admin`, // Uses image ID in path
+      providesTags: (result, error, imageId) => [
+        { type: "Image", id: imageId },
+        { type: "Image", id: "SAME_ADMIN" }
+      ]
+    }),
+
+
 
     // Like / Unlike image
     likeImage: builder.mutation({
@@ -28,7 +50,7 @@ export const imageApi = api.injectEndpoints({
     getLikedImages: builder.query({
       query: () => "/images/liked/me",
       providesTags: ["Image"]
-    })
+    }),
 
   })
 });
@@ -36,5 +58,8 @@ export const imageApi = api.injectEndpoints({
 export const {
   useGetImagesQuery,
   useLikeImageMutation,
-  useGetLikedImagesQuery
+  useGetLikedImagesQuery,
+  useGetImageByIdQuery,
+  useGetImagesByUserQuery,
+  useGetImagesBySameAdminQuery,
 } = imageApi;

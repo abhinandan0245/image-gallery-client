@@ -5,7 +5,7 @@ const LikedImages = () => {
   const { data: images = [], isLoading } = useGetLikedImagesQuery();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="w-[90%] mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">❤️ Your Liked Images</h1>
 
       {isLoading ? (
@@ -16,7 +16,7 @@ const LikedImages = () => {
           <p className="mt-2 text-lg">You haven't liked any images yet</p>
         </div>
       ) : (
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4">  
           {images.map((image) => (
             <ImageCard key={image._id} image={image} forceLiked={true} />
           ))}
