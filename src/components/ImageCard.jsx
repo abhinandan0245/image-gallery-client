@@ -1,9 +1,9 @@
 import { Heart, Eye } from "lucide-react";
 import { useLikeImageMutation } from "../features/images/imageApi";
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const ImageCard = ({ image, forceLiked = false }) => {
+const ImageCard =  React.memo(({ image, forceLiked = false }) => {
   const navigate = useNavigate();
   const [likeImage, { isLoading }] = useLikeImageMutation();
   const [optimisticLiked, setOptimisticLiked] = useState(false);
@@ -161,6 +161,6 @@ const ImageCard = ({ image, forceLiked = false }) => {
       </div>
     </Link>
   );
-};
+});
 
 export default ImageCard;

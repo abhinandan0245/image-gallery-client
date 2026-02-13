@@ -18,3 +18,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Enable class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Optional smooth transition */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

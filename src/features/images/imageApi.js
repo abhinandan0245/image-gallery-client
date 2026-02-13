@@ -4,15 +4,15 @@ export const imageApi = api.injectEndpoints({
   endpoints: (builder) => ({
 
     // Public image feed
-    getImages: builder.query({
-  query: (params = {}) => ({
+getImages: builder.query({
+  query: ({ sort = "newest", page = 1, limit = 12 }) => ({
     url: "/images",
-    params: {
-      sort: params.sort || "newest"
-    }
+    params: { sort, page, limit },
   }),
-  providesTags: ["Image"]
+  providesTags: ["Image"],
 }),
+
+
 
 getImageById: builder.query({
   query: (id) => `/images/${id}`,
